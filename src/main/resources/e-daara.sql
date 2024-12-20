@@ -1,0 +1,25 @@
+CREATE SCHEMA IF NOT EXISTS `e-daara-bd` DEFAULT CHARACTER SET utf8mb4 ;
+USE `e-daara-bd` ;
+
+CREATE TABLE IF NOT EXISTS `e-daara-bd`.`cours` (
+  `idCours` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `description` TEXT NULL DEFAULT NULL,
+  `isCompleted` BIT(1) NULL DEFAULT NULL,
+  `titre` VARCHAR(255) NOT NULL,
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+
+CREATE TABLE IF NOT EXISTS `e-daara-bd`.`projet` (
+  `idProjet` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `dateFermeture` DATETIME NULL DEFAULT NULL,
+  `dateOuverture` DATETIME NULL DEFAULT NULL,
+  `delai` DATETIME NULL DEFAULT NULL,
+  `description` TEXT NULL DEFAULT NULL,
+  `difficulte` VARCHAR(255) NULL DEFAULT NULL,
+  `note` DOUBLE NOT NULL,
+  `fk_idCours` BIGINT NULL DEFAULT NULL,
+  CONSTRAINT cours_fk
+    FOREIGN KEY (`fk_idCours`)
+    REFERENCES `e-daara-bd`.`cours` (`idCours`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
